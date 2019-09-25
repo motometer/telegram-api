@@ -2,20 +2,21 @@ package org.motometer.telegram.bot;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.motometer.telegram.bot.client.GenericBot;
 
 public class BotBuilder {
 
-    private final DefaultBot.DefaultBotBuilder builder;
+    private final GenericBot.GenericBotBuilder builder;
 
     BotBuilder() {
-        builder = new DefaultBot.DefaultBotBuilder();
+        builder = GenericBot.builder();
         ObjectMapper objectMapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         builder.objectMapper(objectMapper);
     }
 
     public Bot build() {
-        return builder.build();
+        return new DefaultBot(builder.build());
     }
 
     public BotBuilder token(String token) {
