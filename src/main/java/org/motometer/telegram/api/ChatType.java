@@ -1,5 +1,7 @@
 package org.motometer.telegram.api;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum ChatType {
     PRIVATE_CHAT("private"),
     GROUP("group"),
@@ -10,5 +12,10 @@ public enum ChatType {
 
     ChatType(final String value) {
         this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+        return value;
     }
 }

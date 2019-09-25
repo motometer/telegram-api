@@ -1,8 +1,8 @@
 package org.motometer.telegram.api;
 
-import org.immutables.value.Value;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-@Value.Immutable
+@JsonDeserialize(builder = ImmutableUser.Builder.class)
 public interface User {
 
 }

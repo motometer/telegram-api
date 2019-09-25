@@ -4,8 +4,10 @@ import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Value.Immutable
+@JsonDeserialize(builder = ImmutableUpdate.Builder.class)
 public interface Update {
 
     @JsonProperty("update_id")
