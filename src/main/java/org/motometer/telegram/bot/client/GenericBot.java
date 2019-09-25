@@ -34,7 +34,8 @@ public class GenericBot {
 
             String body = response.body();
 
-            return objectMapper.readValue(body, method.getTypeReference());
+            T result = objectMapper.readValue(body, method.getTypeReference());
+            return result;
         } catch (IOException | InterruptedException e) {
             throw new TelegramApiException(e);
         }

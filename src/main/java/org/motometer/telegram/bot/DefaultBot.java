@@ -1,6 +1,7 @@
 package org.motometer.telegram.bot;
 
 import lombok.RequiredArgsConstructor;
+import org.motometer.telegram.bot.api.ApiResponse;
 import org.motometer.telegram.bot.api.Message;
 import org.motometer.telegram.bot.api.OutboundMessage;
 import org.motometer.telegram.bot.api.Update;
@@ -27,6 +28,7 @@ class DefaultBot implements Bot {
 
     @Override
     public Message sendMessage(OutboundMessage message) {
-        return genericClient.execute(message, Method.SEND_MESSAGE).result();
+        ApiResponse<Message> execute = genericClient.execute(message, Method.SEND_MESSAGE);
+        return execute.result();
     }
 }

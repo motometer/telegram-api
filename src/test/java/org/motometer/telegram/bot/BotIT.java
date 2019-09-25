@@ -33,7 +33,7 @@ class BotIT extends AbstractBotIT {
     @Test
     void sendMessage() {
         ImmutableOutboundMessage build = new ImmutableOutboundMessage.Builder()
-            .chatId(388765386)
+            .chatId(251525873)
             .text("Ну Любашка")
             .build();
 
