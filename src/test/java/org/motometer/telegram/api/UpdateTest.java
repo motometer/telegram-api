@@ -18,7 +18,7 @@ class UpdateTest {
 
         final String string = IOUtils.resourceToString("/org/motometer/telegram/api/UpdateTest/update.json", Charset.defaultCharset());
 
-        final Update update = mapper.readValue(string, Update.class);
+        final org.motometer.telegram.bot.api.Update update = mapper.readValue(string, org.motometer.telegram.bot.api.Update.class);
 
         assertThat(update).isNotNull();
     }
