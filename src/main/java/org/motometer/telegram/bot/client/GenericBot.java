@@ -3,6 +3,7 @@ package org.motometer.telegram.bot.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -18,8 +19,8 @@ import lombok.SneakyThrows;
 class GenericBot {
 
     private final ObjectMapper objectMapper;
-    private final String token;
     private final HttpClient httpClient = HttpClient.newBuilder().build();
+    private final String baseUri;
 
     <T, R> R execute(T requestBody, Method<R> method) {
         HttpRequest request = request(method.getValue(), requestBody);
@@ -64,6 +65,7 @@ class GenericBot {
             .build();
     }
 
+    @SneakyThrows
     private HttpRequest request(String method) {
         return HttpRequest.newBuilder()
             .uri(newUri(method))
@@ -71,8 +73,7 @@ class GenericBot {
             .build();
     }
 
-    @SneakyThrows
-    private URI newUri(String method) {
-        return new URI("https://api.telegram.org/bot" + token + "/" + method);
+    private URI newUri(String method) throws URISyntaxException {
+        return new URI(baseUri + method);
     }
 }
