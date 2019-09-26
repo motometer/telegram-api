@@ -9,7 +9,6 @@ import java.util.concurrent.CompletableFuture;
 
 import org.motometer.telegram.bot.TelegramApiException;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Builder;
@@ -32,12 +31,10 @@ class GenericBot {
     }
 
     private <T> CompletableFuture<T> execute(Method<T> method, HttpRequest request) {
-        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-            .thenApply(HttpResponse::body)
-            .thenApply(v -> {
+        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
+            .thenApply(response -> {
                 try {
-                    final TypeReference<ApiResponse<T>> typeReference = method.getTypeReference();
-                    final ApiResponse<T> t = objectMapper.readValue(v, typeReference);
+                    final ApiResponse<T> t = objectMapper.readValue(response.body(), method.getTypeReference());
                     return checkError(t);
                 } catch (IOException e) {
                     throw new TelegramApiException(e);
@@ -54,12 +51,10 @@ class GenericBot {
 
     @SneakyThrows
     private <T> HttpRequest request(String method, T body) {
-        String requestBody = objectMapper.writeValueAsString(body);
-        System.out.println(requestBody);
         return HttpRequest.newBuilder()
             .uri(newUri(method))
             .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .POST(HttpRequest.BodyPublishers.ofByteArray(objectMapper.writeValueAsBytes(body)))
             .build();
     }
 
