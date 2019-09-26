@@ -8,12 +8,12 @@ import org.motometer.telegram.bot.Bot;
 public class BotBuilder {
 
     private static final String DEFAULT_HOST = "https://api.telegram.org";
-    private final GenericBot.GenericBotBuilder builder;
+    private final TelegramClient.TelegramClientBuilder builder;
     private String token;
     private String host;
 
     public BotBuilder() {
-        builder = GenericBot.builder();
+        builder = TelegramClient.builder();
         ObjectMapper objectMapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         builder.objectMapper(objectMapper);

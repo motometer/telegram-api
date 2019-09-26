@@ -16,8 +16,9 @@ import lombok.Builder;
 import lombok.SneakyThrows;
 
 @Builder
-class GenericBot {
+class TelegramClient {
 
+    private static final int HTTP_SUCCESS = 200;
     private final ObjectMapper objectMapper;
     private final HttpClient httpClient = HttpClient.newBuilder().build();
     private final String baseUri;
@@ -38,13 +39,13 @@ class GenericBot {
             checkError(send);
             final ApiResponse<T> t = objectMapper.readValue(send.body(), method.getTypeReference());
             return checkError(t);
-        } catch (IOException | InterruptedException e) {
-            throw new TelegramApiException(e);
+        } catch (final IOException | InterruptedException ex) {
+            throw new TelegramApiException(ex);
         }
     }
 
     private void checkError(HttpResponse<InputStream> response) {
-        if (response.statusCode() != 200) {
+        if (response.statusCode() != HTTP_SUCCESS) {
             throw new TelegramApiException("API returned status code = " + response.statusCode());
         }
     }

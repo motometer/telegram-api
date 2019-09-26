@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class DefaultBot implements Bot {
 
-    private final GenericBot genericClient;
+    private final TelegramClient genericClient;
 
     @Override
     public User me() {
