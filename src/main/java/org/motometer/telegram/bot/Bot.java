@@ -1,19 +1,21 @@
 package org.motometer.telegram.bot;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import org.motometer.telegram.bot.api.Message;
 import org.motometer.telegram.bot.api.OutboundMessage;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
-
-import java.util.List;
+import org.motometer.telegram.bot.client.BotBuilder;
 
 public interface Bot {
 
-    User me();
+    CompletableFuture<User> me();
 
-    List<Update> updates();
+    CompletableFuture<List<Update>> updates();
 
-    Message sendMessage(OutboundMessage message);
+    CompletableFuture<Message> sendMessage(OutboundMessage message);
 
     static BotBuilder builder() {
         return new BotBuilder();

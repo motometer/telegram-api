@@ -1,44 +1,55 @@
 package org.motometer.telegram.bot.client;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.motometer.telegram.bot.TelegramApiException;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.concurrent.CompletableFuture;
+
+import org.motometer.telegram.bot.TelegramApiException;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.Builder;
+import lombok.SneakyThrows;
 
 @Builder
-public class GenericBot {
+class GenericBot {
 
     private final ObjectMapper objectMapper;
     private final String token;
     private final HttpClient httpClient = HttpClient.newBuilder().build();
 
-    public <T, R> R execute(T requestBody, Method<R> method) {
+    <T, R> CompletableFuture<R> execute(T requestBody, Method<R> method) {
         HttpRequest request = request(method.getValue(), requestBody);
         return execute(method, request);
     }
 
-    public <T> T execute(Method<T> method) {
+    <T> CompletableFuture<T> execute(Method<T> method) {
         return execute(method, request(method.getValue()));
     }
 
-    private <T> T execute(Method<T> method, HttpRequest request) {
-        try {
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    private <T> CompletableFuture<T> execute(Method<T> method, HttpRequest request) {
+        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+            .thenApply(HttpResponse::body)
+            .thenApply(v -> {
+                try {
+                    final TypeReference<ApiResponse<T>> typeReference = method.getTypeReference();
+                    final ApiResponse<T> t = objectMapper.readValue(v, typeReference);
+                    return checkError(t);
+                } catch (IOException e) {
+                    throw new TelegramApiException(e);
+                }
+            });
+    }
 
-            String body = response.body();
-
-            T result = objectMapper.readValue(body, method.getTypeReference());
-            return result;
-        } catch (IOException | InterruptedException e) {
-            throw new TelegramApiException(e);
+    private <T> T checkError(final ApiResponse<T> response) {
+        if (response.isOk()) {
+            return response.getResult();
         }
+        throw new TelegramApiException(response.getDescription());
     }
 
     @SneakyThrows
