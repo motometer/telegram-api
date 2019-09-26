@@ -1,11 +1,11 @@
 package org.motometer.telegram.bot.client;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.concurrent.CompletableFuture;
 
 import org.motometer.telegram.bot.TelegramApiException;
 
@@ -21,25 +21,31 @@ class GenericBot {
     private final String token;
     private final HttpClient httpClient = HttpClient.newBuilder().build();
 
-    <T, R> CompletableFuture<R> execute(T requestBody, Method<R> method) {
+    <T, R> R execute(T requestBody, Method<R> method) {
         HttpRequest request = request(method.getValue(), requestBody);
         return execute(method, request);
     }
 
-    <T> CompletableFuture<T> execute(Method<T> method) {
+    <T> T execute(Method<T> method) {
         return execute(method, request(method.getValue()));
     }
 
-    private <T> CompletableFuture<T> execute(Method<T> method, HttpRequest request) {
-        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
-            .thenApply(response -> {
-                try {
-                    final ApiResponse<T> t = objectMapper.readValue(response.body(), method.getTypeReference());
-                    return checkError(t);
-                } catch (IOException e) {
-                    throw new TelegramApiException(e);
-                }
-            });
+    private <T> T execute(Method<T> method, HttpRequest request) {
+
+        try {
+            HttpResponse<InputStream> send = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
+            checkError(send);
+            final ApiResponse<T> t = objectMapper.readValue(send.body(), method.getTypeReference());
+            return checkError(t);
+        } catch (IOException | InterruptedException e) {
+            throw new TelegramApiException(e);
+        }
+    }
+
+    private void checkError(HttpResponse<InputStream> response) {
+        if (response.statusCode() != 200) {
+            throw new TelegramApiException("API returned status code = " + response.statusCode());
+        }
     }
 
     private <T> T checkError(final ApiResponse<T> response) {
