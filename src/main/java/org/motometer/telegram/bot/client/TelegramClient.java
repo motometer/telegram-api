@@ -33,12 +33,11 @@ class TelegramClient {
     }
 
     private <T> T execute(Method<T> method, HttpRequest request) {
-
         try {
             HttpResponse<InputStream> send = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
             checkError(send);
-            final ApiResponse<T> t = objectMapper.readValue(send.body(), method.getTypeReference());
-            return checkError(t);
+            final ApiResponse<T> response = objectMapper.readValue(send.body(), method.getTypeReference());
+            return checkError(response);
         } catch (final IOException | InterruptedException ex) {
             throw new TelegramApiException(ex);
         }
@@ -59,22 +58,21 @@ class TelegramClient {
 
     @SneakyThrows
     private <T> HttpRequest request(String method, T body) {
-        return HttpRequest.newBuilder()
-            .uri(newUri(method))
+        return newBuilder(method)
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofByteArray(objectMapper.writeValueAsBytes(body)))
             .build();
     }
 
-    @SneakyThrows
-    private HttpRequest request(String method) {
+    private HttpRequest.Builder newBuilder(String method) throws URISyntaxException {
         return HttpRequest.newBuilder()
-            .uri(newUri(method))
-            .GET()
-            .build();
+            .uri(new URI(baseUri + method));
     }
 
-    private URI newUri(String method) throws URISyntaxException {
-        return new URI(baseUri + method);
+    @SneakyThrows
+    private HttpRequest request(String method) {
+        return newBuilder(method)
+            .GET()
+            .build();
     }
 }
