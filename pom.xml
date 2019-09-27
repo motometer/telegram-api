@@ -10,6 +10,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <sources.encoding>UTF-8</sources.encoding>
     </properties>
 
     <dependencies>
@@ -69,8 +70,17 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
+                    <encoding>${sources.encoding}</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <encoding>${sources.encoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -84,7 +94,7 @@
                 <version>3.1.0</version>
                 <configuration>
                     <configLocation>${basedir}/checkstyle.xml</configLocation>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${sources.encoding}</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>
@@ -105,6 +115,8 @@
                 <version>3.12.0</version>
                 <configuration>
                     <rulesets>${basedir}/pmd-ruleset.xml</rulesets>
+                    <linkXRef>false</linkXRef>
+                    <sourceEncoding>${sources.encoding}</sourceEncoding>
                 </configuration>
                 <executions>
                     <execution>
@@ -120,6 +132,10 @@
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>3.1.12.2</version>
+                <configuration>
+                    <xmlOutputDirectory>${build.outputDirectory}/reports</xmlOutputDirectory>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>com.github.spotbugs</groupId>
