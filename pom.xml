@@ -73,6 +73,7 @@
                     <encoding>${sources.encoding}</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -168,8 +169,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/motometer/telegram-bot-api.git</developerConnection>
+    </scm>
 
     <distributionManagement>
         <repository>
