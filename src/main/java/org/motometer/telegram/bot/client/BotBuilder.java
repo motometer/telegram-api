@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.motometer.telegram.bot.Bot;
 
+import static java.util.Objects.requireNonNull;
+
 public class BotBuilder {
 
     private static final String DEFAULT_HOST = "https://api.telegram.org";
@@ -28,7 +30,7 @@ public class BotBuilder {
     }
 
     private String baseUri() {
-        return host + "/bot" + token + "/";
+        return host + "/bot" + requireNonNull(token) + "/";
     }
 
     public BotBuilder token(String token) {
