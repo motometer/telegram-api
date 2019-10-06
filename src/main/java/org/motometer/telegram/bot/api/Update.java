@@ -11,21 +11,21 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public interface Update {
 
     @JsonProperty("update_id")
-    int getId();
+    int id();
 
     @Nullable
     @JsonProperty("message")
-    Message getMessage();
+    Message message();
 
     @Nullable
     @JsonProperty("edited_message")
-    Message getEditedMessage();
+    Message editedMessage();
 
     @Nullable
     @JsonProperty("channel_post")
-    Message getChannelPost();
+    Message channelPost();
 
     @Nullable
     @JsonProperty("edited_channel_post")
-    Message getEditedChannelPost();
+    Message editedChannelPost();
 }
