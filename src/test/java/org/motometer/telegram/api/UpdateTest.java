@@ -1,24 +1,21 @@
 package org.motometer.telegram.api;
 
+import org.junit.jupiter.api.Test;
+import org.motometer.telegram.bot.api.Update;
+
+import static java.nio.charset.Charset.defaultCharset;
+import static org.apache.commons.io.IOUtils.resourceToString;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.nio.charset.Charset;
+class UpdateTest extends AbstractJsonTest {
 
-import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.Test;
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-class UpdateTest {
+    private static final String PAYLOAD_PATH = "/org/motometer/telegram/api/UpdateTest/update.json";
 
     @Test
     void deserialization() throws Exception {
-        final ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        final var string = resourceToString(PAYLOAD_PATH, defaultCharset());
 
-        final String string = IOUtils.resourceToString("/org/motometer/telegram/api/UpdateTest/update.json", Charset.defaultCharset());
-
-        final org.motometer.telegram.bot.api.Update update = mapper.readValue(string, org.motometer.telegram.bot.api.Update.class);
+        final var update = mapper.readValue(string, Update.class);
 
         assertThat(update).isNotNull();
     }

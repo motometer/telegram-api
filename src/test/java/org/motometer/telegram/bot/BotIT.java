@@ -2,10 +2,10 @@ package org.motometer.telegram.bot;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.motometer.telegram.bot.api.ImmutableOutboundMessage;
 import org.motometer.telegram.bot.api.Message;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
+import org.motometer.telegram.bot.api.method.ImmutableSendMessage;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ class BotIT extends AbstractBotIT {
 
     @Test
     void sendMessage() {
-        ImmutableOutboundMessage build = new ImmutableOutboundMessage.Builder()
+        ImmutableSendMessage build = new ImmutableSendMessage.Builder()
             .chatId(1)
             .text("Hello")
             .build();

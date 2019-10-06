@@ -10,8 +10,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public interface Chat {
 
     @JsonProperty("id")
-    int getId();
+    int id();
 
     @JsonProperty("type")
-    ChatType getType();
+    ChatType type();
 }

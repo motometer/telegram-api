@@ -1,9 +1,12 @@
 package org.motometer.telegram.bot.client;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.motometer.telegram.bot.Bot;
+
+import static java.util.Objects.requireNonNull;
 
 public class BotBuilder {
 
@@ -15,7 +18,8 @@ public class BotBuilder {
     public BotBuilder() {
         builder = TelegramClient.builder();
         ObjectMapper objectMapper = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
         builder.objectMapper(objectMapper);
         host = DEFAULT_HOST;
     }
@@ -26,7 +30,7 @@ public class BotBuilder {
     }
 
     private String baseUri() {
-        return host + "/bot" + token + "/";
+        return host + "/bot" + requireNonNull(token) + "/";
     }
 
     public BotBuilder token(String token) {
