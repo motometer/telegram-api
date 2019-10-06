@@ -1,4 +1,4 @@
-package org.motometer.telegram.bot.api;
+package org.motometer.telegram.bot.api.method;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -7,11 +7,11 @@ import org.jetbrains.annotations.Nullable;
 import org.motometer.telegram.bot.api.reply.ReplyMarkup;
 
 /**
- * @see <a href=https://core.telegram.org/bots/api#sendmessage>OutboundMessage</a>
+ * @see <a href=https://core.telegram.org/bots/api#sendmessage>SendMessage</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableOutboundMessage.Builder.class)
-public interface OutboundMessage {
+@JsonDeserialize(builder = ImmutableSendMessage.Builder.class)
+public interface SendMessage {
 
     @Value.Parameter
     @JsonProperty("chat_id")
