@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.client;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,7 +16,8 @@ public class BotBuilder {
     public BotBuilder() {
         builder = TelegramClient.builder();
         ObjectMapper objectMapper = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
         builder.objectMapper(objectMapper);
         host = DEFAULT_HOST;
     }
