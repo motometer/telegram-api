@@ -2,6 +2,7 @@ plugins {
     java
     `maven-publish`
     checkstyle
+    pmd
 }
 
 repositories {
@@ -42,4 +43,8 @@ publishing {
             artifact(sourcesJar.get())
         }
     }
+}
+
+pmd {
+    ruleSetFiles(file("${projectDir}/config/pmd/pmd-ruleset.xml"))
 }
