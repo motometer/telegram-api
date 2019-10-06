@@ -5,7 +5,7 @@ import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Representation of https://core.telegram.org/bots/api#forcereply
+ * @see <a href=https://core.telegram.org/bots/api#forcereply>ForceReply</a>
  */
 @Value.Immutable
 public interface ForceReply extends ReplyMarkup {
