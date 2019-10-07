@@ -53,7 +53,7 @@ artifacts {
 
 release {
     git {
-        requireBranch = 'master'
+        requireBranch = 'deploy'
     }
 }
 
