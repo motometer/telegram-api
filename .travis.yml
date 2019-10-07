@@ -4,5 +4,5 @@ before_install:
   - chmod +x gradlew
   - chmod +x release.sh
 
-install: true
-script: ./release.sh
+after_success:
+  - ./release.sh
