@@ -1,31 +1,33 @@
 package org.motometer.telegram.bot.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
+/**
+ * @see <a href="https://core.telegram.org/bots/api#update">Update</a>
+ */
 @Value.Immutable
 @JsonDeserialize(builder = ImmutableUpdate.Builder.class)
 public interface Update {
 
     @JsonProperty("update_id")
-    int getId();
+    int id();
 
     @Nullable
     @JsonProperty("message")
-    Message getMessage();
+    Message message();
 
     @Nullable
     @JsonProperty("edited_message")
-    Message getEditedMessage();
+    Message editedMessage();
 
     @Nullable
     @JsonProperty("channel_post")
-    Message getChannelPost();
+    Message channelPost();
 
     @Nullable
     @JsonProperty("edited_channel_post")
-    Message getEditedChannelPost();
+    Message editedChannelPost();
 }

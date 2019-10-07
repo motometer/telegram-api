@@ -5,13 +5,16 @@ import org.immutables.value.Value;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+/**
+ * @see <a href="https://core.telegram.org/bots/api#chat">Chat</a>
+ */
 @Value.Immutable
 @JsonDeserialize(builder = ImmutableChat.Builder.class)
 public interface Chat {
 
     @JsonProperty("id")
-    int getId();
+    int id();
 
     @JsonProperty("type")
-    ChatType getType();
+    ChatType type();
 }

@@ -6,25 +6,28 @@ import org.jetbrains.annotations.Nullable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+/**
+ * @see <a href="https://core.telegram.org/bots/api#message">Message</a>
+ */
 @Value.Immutable
 @JsonDeserialize(builder = ImmutableMessage.Builder.class)
 public interface Message {
 
     @JsonProperty("message_id")
-    int getId();
+    int id();
 
     @Nullable
     @JsonProperty("from")
-    User getFromUser();
+    User fromUser();
 
     @JsonProperty("date")
-    int getDate();
+    int date();
 
     @Nullable
     @JsonProperty("chat")
-    Chat getChat();
+    Chat chat();
 
     @Nullable
     @JsonProperty("text")
-    String getText();
+    String text();
 }

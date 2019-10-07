@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.motometer.telegram.bot.Bot;
 import org.motometer.telegram.bot.api.Message;
-import org.motometer.telegram.bot.api.OutboundMessage;
+import org.motometer.telegram.bot.api.method.SendMessage;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
 
@@ -26,7 +26,7 @@ class DefaultBot implements Bot {
     }
 
     @Override
-    public Message sendMessage(OutboundMessage message) {
+    public Message sendMessage(SendMessage message) {
         return genericClient.execute(message, Method.SEND_MESSAGE);
     }
 }
