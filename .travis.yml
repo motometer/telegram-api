@@ -3,10 +3,5 @@ language: java
 before_install:
   - chmod +x gradlew
 
-stages:
-  - name: bintrayDeploy
-    if: branch = deploy
-
-bintrayDeploy:
-  - ./gradlew release -Prelease.useAutomaticVersion=true
-  - ./gradlew bintrayUpload
+install: true
+script: ./release.sh
