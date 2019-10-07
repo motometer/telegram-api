@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
  * @see <a href="https://core.telegram.org/bots/api#replykeyboardremove">ReplyKeyboardRemove</a>
  */
 @Value.Immutable
-public interface ReplyKeyboardRemove {
+public interface ReplyKeyboardRemove extends ReplyMarkup {
 
     @Value.Parameter
     @JsonProperty("remove_keyboard")
