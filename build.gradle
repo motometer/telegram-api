@@ -62,6 +62,8 @@ bintray {
     key = System.getenv('BINTRAY_PASSWORD')
     pkg {
         repo = 'mvn'
+        name = project.name
+        userOrg = 'motometer'
         vcsUrl = 'https://github.com/motometer/telegram-bot-api'
         version {
             name = project.version
