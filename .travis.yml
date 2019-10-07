@@ -4,9 +4,9 @@ before_install:
   - chmod +x gradlew
 
 stages:
-  - name: deploy
+  - name: bintrayDeploy
     if: branch = deploy
 
-deploy:
+bintrayDeploy:
   - ./gradlew release -Prelease.useAutomaticVersion=true
   - ./gradlew bintrayUpload
