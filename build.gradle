@@ -60,6 +60,7 @@ release {
 bintray {
     user = System.getenv('BINTRAY_USERNAME')
     key = System.getenv('BINTRAY_PASSWORD')
+    publications = ['bintrayPublication']
     pkg {
         repo = 'mvn'
         name = project.name
@@ -75,8 +76,9 @@ bintray {
 
 publishing {
     publications {
-        MyPublication(MavenPublication) {
+        bintrayPublication(MavenPublication) {
             from components.java
+            artifact sourcesJar
             groupId project.group
             artifactId project.name
             version project.version
