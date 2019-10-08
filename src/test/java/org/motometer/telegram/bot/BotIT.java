@@ -2,7 +2,7 @@ package org.motometer.telegram.bot;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.motometer.telegram.bot.api.Message;
+import org.motometer.telegram.bot.api.message.Message;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
 import org.motometer.telegram.bot.api.method.ImmutableSendMessage;

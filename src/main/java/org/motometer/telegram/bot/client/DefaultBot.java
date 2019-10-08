@@ -3,7 +3,7 @@ package org.motometer.telegram.bot.client;
 import java.util.List;
 
 import org.motometer.telegram.bot.Bot;
-import org.motometer.telegram.bot.api.Message;
+import org.motometer.telegram.bot.api.message.Message;
 import org.motometer.telegram.bot.api.method.SendMessage;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
