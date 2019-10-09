@@ -13,20 +13,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class DefaultBot implements Bot {
 
-    private final TelegramClient genericClient;
+    private final BotTemplate botTemplate;
 
     @Override
     public User me() {
-        return genericClient.execute(Method.ME);
+        return botTemplate.execute(Method.ME);
     }
 
     @Override
     public List<Update> updates() {
-        return genericClient.execute(Method.UPDATES);
+        return botTemplate.execute(Method.UPDATES);
     }
 
     @Override
     public Message sendMessage(SendMessage message) {
-        return genericClient.execute(message, Method.SEND_MESSAGE);
+        return botTemplate.execute(message, Method.SEND_MESSAGE);
     }
 }

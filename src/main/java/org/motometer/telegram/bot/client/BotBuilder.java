@@ -11,12 +11,12 @@ import static java.util.Objects.requireNonNull;
 public class BotBuilder {
 
     private static final String DEFAULT_HOST = "https://api.telegram.org";
-    private final TelegramClient.TelegramClientBuilder builder;
+    private final BotTemplate.BotTemplateBuilder builder;
     private String token;
     private String host;
 
     public BotBuilder() {
-        builder = TelegramClient.builder();
+        builder = BotTemplate.builder();
         ObjectMapper objectMapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .setSerializationInclusion(JsonInclude.Include.NON_NULL);
