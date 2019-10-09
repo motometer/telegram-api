@@ -9,10 +9,7 @@ import org.immutables.value.Value;
  */
 @Value.Immutable
 @JsonDeserialize(builder = ImmutablePhotoSize.Builder.class)
-public interface PhotoSize {
-
-    @JsonProperty("file_id")
-    String fileId();
+public interface PhotoSize extends File {
 
     @JsonProperty("width")
     int width();
@@ -20,6 +17,7 @@ public interface PhotoSize {
     @JsonProperty("height")
     int height();
 
+    @Override
     @JsonProperty("file_size")
-    int fileSize();
+    Integer fileSize();
 }

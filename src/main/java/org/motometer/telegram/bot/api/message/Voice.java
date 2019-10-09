@@ -10,10 +10,7 @@ import org.jetbrains.annotations.Nullable;
  */
 @Value.Immutable
 @JsonDeserialize(builder = ImmutableVoice.Builder.class)
-public interface Voice {
-
-    @JsonProperty("file_id")
-    String fileId();
+public interface Voice extends File {
 
     @JsonProperty("duration")
     int duration();
@@ -21,8 +18,4 @@ public interface Voice {
     @Nullable
     @JsonProperty("mime_type")
     String mimeType();
-
-    @Nullable
-    @JsonProperty("file_size")
-    Integer fileSize();
 }

@@ -10,10 +10,7 @@ import org.jetbrains.annotations.Nullable;
  */
 @Value.Immutable
 @JsonDeserialize(builder = ImmutableSticker.Builder.class)
-public interface Sticker {
-
-    @JsonProperty("file_id")
-    String fileId();
+public interface Sticker extends File {
 
     @JsonProperty("width")
     int width();
@@ -39,8 +36,4 @@ public interface Sticker {
     @Nullable
     @JsonProperty("mask_position")
     MaskPosition maskPosition();
-
-    @Nullable
-    @JsonProperty("file_size")
-    Integer fileSize();
 }

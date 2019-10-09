@@ -10,10 +10,7 @@ import org.jetbrains.annotations.Nullable;
  */
 @Value.Immutable
 @JsonDeserialize(builder = ImmutableVideoNote.Builder.class)
-public interface VideoNote {
-
-    @JsonProperty("file_id")
-    String fileId();
+public interface VideoNote extends File {
 
     @JsonProperty("length")
     int length();
@@ -24,8 +21,4 @@ public interface VideoNote {
     @Nullable
     @JsonProperty("thumb")
     PhotoSize thumb();
-
-    @Nullable
-    @JsonProperty("file_size")
-    Integer fileSize();
 }
