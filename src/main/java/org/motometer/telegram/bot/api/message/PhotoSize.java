@@ -12,12 +12,12 @@ import org.immutables.value.Value;
 public interface PhotoSize extends File {
 
     @JsonProperty("width")
-    int width();
+    long width();
 
     @JsonProperty("height")
-    int height();
+    long height();
 
     @Override
     @JsonProperty("file_size")
-    Integer fileSize();
+    Long fileSize();
 }

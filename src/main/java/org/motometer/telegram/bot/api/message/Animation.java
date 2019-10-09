@@ -13,13 +13,13 @@ import org.jetbrains.annotations.Nullable;
 public interface Animation extends Attachment {
 
     @JsonProperty("width")
-    int width();
+    long width();
 
     @JsonProperty("height")
-    int height();
+    long height();
 
     @JsonProperty("duration")
-    int duration();
+    long duration();
 
     @Nullable
     @JsonProperty("file_name")

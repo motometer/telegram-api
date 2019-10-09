@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 public interface Voice extends File {
 
     @JsonProperty("duration")
-    int duration();
+    long duration();
 
     @Nullable
     @JsonProperty("mime_type")

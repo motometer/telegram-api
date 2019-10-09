@@ -13,10 +13,10 @@ import org.jetbrains.annotations.Nullable;
 public interface Sticker extends File {
 
     @JsonProperty("width")
-    int width();
+    long width();
 
     @JsonProperty("height")
-    int height();
+    long height();
 
     @JsonProperty("is_animated")
     boolean isAnimated();

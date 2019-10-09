@@ -22,10 +22,10 @@ public interface MessageEntity {
     String type();
 
     @JsonProperty("offset")
-    int offset();
+    long offset();
 
     @JsonProperty("length")
-    int length();
+    long length();
 
     @Nullable
     @JsonProperty("url")

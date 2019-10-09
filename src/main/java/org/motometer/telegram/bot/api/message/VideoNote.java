@@ -13,10 +13,10 @@ import org.jetbrains.annotations.Nullable;
 public interface VideoNote extends File {
 
     @JsonProperty("length")
-    int length();
+    long length();
 
     @JsonProperty("duration")
-    int duration();
+    long duration();
 
     @Nullable
     @JsonProperty("thumb")

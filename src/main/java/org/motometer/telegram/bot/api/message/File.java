@@ -10,5 +10,5 @@ public interface File {
 
     @Nullable
     @JsonProperty("file_size")
-    Integer fileSize();
+    Long fileSize();
 }

@@ -18,14 +18,14 @@ import java.util.List;
 public interface Message {
 
     @JsonProperty("message_id")
-    int id();
+    long id();
 
     @Nullable
     @JsonProperty("from")
     User fromUser();
 
     @JsonProperty("date")
-    int date();
+    long date();
 
     @Nullable
     @JsonProperty("chat")
@@ -41,7 +41,7 @@ public interface Message {
 
     @Nullable
     @JsonProperty("forward_from_message_id")
-    Integer forwardFromMessageId();
+    Long forwardFromMessageId();
 
     @Nullable
     @JsonProperty("forward_signature")
@@ -53,7 +53,7 @@ public interface Message {
 
     @Nullable
     @JsonProperty("forward_date")
-    Integer forwardDate();
+    Long forwardDate();
 
     @Nullable
     @JsonProperty("reply_to_message")
@@ -61,7 +61,7 @@ public interface Message {
 
     @Nullable
     @JsonProperty("edit_date")
-    Integer editDate();
+    Long editDate();
 
     @Nullable
     @JsonProperty("media_group_id")

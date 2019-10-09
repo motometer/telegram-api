@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public interface Chat {
 
     @JsonProperty("id")
-    int id();
+    long id();
 
     @JsonProperty("type")
     ChatType type();

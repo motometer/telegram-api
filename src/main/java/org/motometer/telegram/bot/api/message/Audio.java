@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 public interface Audio extends Attachment {
 
     @JsonProperty("duration")
-    int duration();
+    long duration();
 
     @Nullable
     @JsonProperty("performer")

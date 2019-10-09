@@ -24,7 +24,7 @@ public interface Contact {
 
     @Nullable
     @JsonProperty("user_id")
-    Integer userId();
+    Long userId();
 
     @Nullable
     @JsonProperty("vcard")

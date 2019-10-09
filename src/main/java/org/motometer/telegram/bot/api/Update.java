@@ -14,7 +14,7 @@ import org.motometer.telegram.bot.api.message.Message;
 public interface Update {
 
     @JsonProperty("update_id")
-    int id();
+    long id();
 
     @Nullable
     @JsonProperty("message")

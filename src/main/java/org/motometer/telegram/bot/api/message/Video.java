@@ -12,11 +12,11 @@ import org.immutables.value.Value;
 public interface Video extends Attachment {
 
     @JsonProperty("width")
-    int width();
+    long width();
 
     @JsonProperty("height")
-    int height();
+    long height();
 
     @JsonProperty("duration")
-    int duration();
+    long duration();
 }

@@ -15,7 +15,7 @@ public interface SendMessage {
 
     @Value.Parameter
     @JsonProperty("chat_id")
-    int chatId();
+    long chatId();
 
     @Value.Parameter
     @JsonProperty("text")
@@ -35,7 +35,7 @@ public interface SendMessage {
 
     @Nullable
     @JsonProperty("reply_to_message_id")
-    Integer replyToMessageId();
+    Long replyToMessageId();
 
     @Nullable
     @JsonProperty("reply_markup")
