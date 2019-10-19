@@ -19,7 +19,7 @@ class ApiResponse<T> {
 
     @Nullable
     @JsonProperty("error_code")
-    private Integer errorCode;
+    private Long errorCode;
 
     @Nullable
     private T result;

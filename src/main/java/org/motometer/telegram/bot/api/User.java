@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 public interface User {
 
     @JsonProperty("id")
-    int id();
+    long id();
 
     @JsonProperty("first_name")
     String firstName();

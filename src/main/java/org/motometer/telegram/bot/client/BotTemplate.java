@@ -16,7 +16,7 @@ import lombok.Builder;
 import lombok.SneakyThrows;
 
 @Builder
-class TelegramClient {
+class BotTemplate {
 
     private static final int HTTP_SUCCESS = 200;
     private final ObjectMapper objectMapper;
