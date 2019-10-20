@@ -6,11 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.motometer.telegram.bot.Bot;
 import org.motometer.telegram.bot.api.Update;
+import org.motometer.telegram.bot.api.message.File;
 import org.motometer.telegram.bot.api.message.Message;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -22,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class DefaultBotTest {
 
-    private static final String PAYLOAD_PATH = "org/motometer/telegram/bot/jdk8/DefaultBotTest/update.json";
+    private static final String PAYLOAD_PATH = "/home/vbychkovskyi/projects/motometer/bot-api/bot-jdk8/src/test/resources/org/motometer/telegram/bot/jdk8/DefaultBotTest/update.json";
 
     private Bot bot;
 
@@ -47,9 +50,9 @@ class DefaultBotTest {
 
         bot.addUpdateListener(updateListener::complete);
 
-        URL resource = this.getClass().getResource(PAYLOAD_PATH);
+        java.io.File file = Paths.get(PAYLOAD_PATH).toFile();
 
-        String input = IOUtils.toString(resource, defaultCharset());
+        String input = IOUtils.toString(new FileInputStream(file), defaultCharset());
         bot.handleWebhook(input);
 
         Update actual = updateListener.get(2, TimeUnit.SECONDS);
@@ -57,6 +60,6 @@ class DefaultBotTest {
         assertThat(actual).isNotNull();
         Message message = actual.message();
         assertThat(message).isNotNull();
-        assertThat(message.fromUser()).isNotNull();
+        assertThat(message.chat()).isNotNull();
     }
 }
