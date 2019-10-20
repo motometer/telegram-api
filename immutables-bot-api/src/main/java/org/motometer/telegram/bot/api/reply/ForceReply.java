@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.api.reply;
 
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 @Value.Immutable
 public interface ForceReply extends ReplyMarkup {
 
+    @Gson.Named("force_reply")
     boolean forceReply();
 
     @Nullable

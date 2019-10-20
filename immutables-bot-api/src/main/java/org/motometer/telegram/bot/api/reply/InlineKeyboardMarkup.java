@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.api.reply;
 
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 import java.util.List;
@@ -10,5 +11,6 @@ import java.util.List;
 @Value.Immutable
 public interface InlineKeyboardMarkup extends ReplyMarkup {
 
+    @Gson.Named("inline_keyboard")
     List<List<InlineKeyboardButton>> inlineKeyboard();
 }

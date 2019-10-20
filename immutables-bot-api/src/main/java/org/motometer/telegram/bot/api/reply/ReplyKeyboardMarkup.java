@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.api.reply;
 
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,9 +15,11 @@ public interface ReplyKeyboardMarkup extends ReplyMarkup {
     List<List<KeyboardButton>> keyboard();
 
     @Nullable
+    @Gson.Named("resize_keyboard")
     Boolean resizeKeyboard();
 
     @Nullable
+    @Gson.Named("one_time_keyboard")
     Boolean oneTimeKeyboard();
 
     @Nullable

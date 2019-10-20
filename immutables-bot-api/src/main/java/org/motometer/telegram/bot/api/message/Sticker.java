@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.api.message;
 
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,5 +26,6 @@ public interface Sticker extends File {
     String setName();
 
     @Nullable
+    @Gson.Named("mask_position")
     MaskPosition maskPosition();
 }

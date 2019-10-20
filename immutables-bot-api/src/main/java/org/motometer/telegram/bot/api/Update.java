@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.api;
 
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 import org.motometer.telegram.bot.api.message.Message;
@@ -16,11 +17,14 @@ public interface Update {
     Message message();
 
     @Nullable
+    @Gson.Named("edited_message")
     Message editedMessage();
 
     @Nullable
+    @Gson.Named("channel_post")
     Message channelPost();
 
     @Nullable
+    @Gson.Named("edited_channel_post")
     Message editedChannelPost();
 }

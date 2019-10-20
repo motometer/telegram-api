@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.api.reply;
 
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,11 +13,14 @@ public interface LoginUrl {
     String url();
 
     @Nullable
+    @Gson.Named("forward_text")
     String forwardText();
 
     @Nullable
+    @Gson.Named("bot_username")
     String botUsername();
 
     @Nullable
+    @Gson.Named("request_write_access")
     Boolean requestWriteAccess();
 }

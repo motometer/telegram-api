@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.api.message;
 
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 import org.motometer.telegram.bot.api.Chat;
@@ -16,6 +17,7 @@ public interface Message {
     long id();
 
     @Nullable
+    @Gson.Named("from_user")
     User fromUser();
 
     long date();
@@ -24,33 +26,43 @@ public interface Message {
     Chat chat();
 
     @Nullable
+    @Gson.Named("forward_from")
     User forwardFrom();
 
     @Nullable
+    @Gson.Named("forward_from_chat")
     Chat forwardFromChat();
 
     @Nullable
+    @Gson.Named("forward_from_message_id")
     Long forwardFromMessageId();
 
     @Nullable
+    @Gson.Named("forward_signature")
     String forwardSignature();
 
     @Nullable
+    @Gson.Named("forward_sender_name")
     String forwardSenderName();
 
     @Nullable
+    @Gson.Named("forward_date")
     Long forwardDate();
 
     @Nullable
+    @Gson.Named("reply_to_message")
     Message replyToMessage();
 
     @Nullable
+    @Gson.Named("edit_date")
     Long editDate();
 
     @Nullable
+    @Gson.Named("media_group_id")
     String mediaGroupId();
 
     @Nullable
+    @Gson.Named("author_signature")
     String authorSignature();
 
     @Nullable
@@ -60,6 +72,7 @@ public interface Message {
     List<MessageEntity> entities();
 
     @Nullable
+    @Gson.Named("caption_entities")
     List<MessageEntity> captionEntities();
 
     @Nullable

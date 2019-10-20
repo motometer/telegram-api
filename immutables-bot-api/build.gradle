@@ -14,8 +14,8 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains:annotations:16.0.1"
-    implementation "org.immutables:gson:2.8.0"
 
+    compileOnly "org.immutables:gson:2.8.0"
     compileOnly "org.immutables:value:2.8.0"
     annotationProcessor "org.immutables:value:2.8.0"
 }
