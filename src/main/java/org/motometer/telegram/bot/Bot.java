@@ -1,10 +1,9 @@
 package org.motometer.telegram.bot;
 
-import org.motometer.telegram.bot.api.message.Message;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
+import org.motometer.telegram.bot.api.message.Message;
 import org.motometer.telegram.bot.api.method.SendMessage;
-import org.motometer.telegram.bot.client.BotBuilder;
 
 import java.util.List;
 
@@ -34,8 +33,4 @@ public interface Bot {
      * @see <a href="https://core.telegram.org/bots/api#sendmessage">sendMessage</a>
      */
     Message sendMessage(SendMessage message);
-
-    static BotBuilder builder() {
-        return new BotBuilder();
-    }
 }
