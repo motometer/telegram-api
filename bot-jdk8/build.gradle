@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'org.motometer.telegram'
+version '0.0.6-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":immutables-bot-api")
+
+    compileOnly "org.projectlombok:lombok:1.18.10"
+    annotationProcessor "org.projectlombok:lombok:1.18.10"
+    compileOnly "org.immutables:gson:2.8.0"
+    compileOnly "org.immutables:value:2.8.0"
+    annotationProcessor "org.immutables:value:2.8.0"
+}
