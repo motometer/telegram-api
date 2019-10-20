@@ -3,29 +3,20 @@ package org.motometer.telegram.bot.jdk8;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
 import org.motometer.telegram.bot.Bot;
 import org.motometer.telegram.bot.api.Update;
-import org.motometer.telegram.bot.api.message.File;
 import org.motometer.telegram.bot.api.message.Message;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import static java.nio.charset.Charset.defaultCharset;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DefaultBotTest {
 
-    private static final String PAYLOAD_PATH = "/home/vbychkovskyi/projects/motometer/bot-api/bot-jdk8/src/test/resources/org/motometer/telegram/bot/jdk8/DefaultBotTest/update.json";
+    private static final String PAYLOAD_PATH = "https://raw.githubusercontent.com/motometer/telegram-bot-api/9ec9bc2da04331546ca3c832a268279411a4129f/bot-jdk8/src/test/resources/org/motometer/telegram/bot/jdk8/DefaultBotTest/update.json";
 
     private Bot bot;
 
@@ -44,18 +35,10 @@ class DefaultBotTest {
     }
 
     @Test
-    @Timeout(10)
-    void handleWebhook() throws ExecutionException, InterruptedException, TimeoutException, IOException {
-        CompletableFuture<Update> updateListener = new CompletableFuture<>();
+    void handleWebhook() throws IOException {
+        String input = IOUtils.toString(new URL(PAYLOAD_PATH), defaultCharset());
 
-        bot.addUpdateListener(updateListener::complete);
-
-        java.io.File file = Paths.get(PAYLOAD_PATH).toFile();
-
-        String input = IOUtils.toString(new FileInputStream(file), defaultCharset());
-        bot.handleWebhook(input);
-
-        Update actual = updateListener.get(2, TimeUnit.SECONDS);
+        Update actual = bot.parseUpdate(input);
 
         assertThat(actual).isNotNull();
         Message message = actual.message();

@@ -22,19 +22,8 @@ class DefaultBot implements Bot {
     private final Gson gson;
 
     @Override
-    public void handleWebhook(String input) {
-        Update update = gson.fromJson(input, Update.class);
-        listeners.forEach(listener -> listener.onUpdate(update));
-    }
-
-    @Override
-    public void addUpdateListener(UpdateListener listener) {
-        listeners.add(listener);
-    }
-
-    @Override
-    public boolean removeListener(UpdateListener listener) {
-        return listeners.remove(listener);
+    public Update parseUpdate(String input) {
+        return gson.fromJson(input, Update.class);
     }
 
     @Override
