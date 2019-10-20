@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     implementation project(":immutables-bot-api")
+    implementation "org.jetbrains:annotations:16.0.1"
     compile 'org.eclipse.jetty:jetty-client:9.4.21.v20190926'
 
     compileOnly "org.projectlombok:lombok:1.18.10"

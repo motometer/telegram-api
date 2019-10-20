@@ -11,6 +11,7 @@ import org.motometer.telegram.bot.api.message.Message;
 @Value.Immutable
 public interface Update {
 
+    @Gson.Named("update_id")
     long id();
 
     @Nullable

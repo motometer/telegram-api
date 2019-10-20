@@ -1,7 +1,10 @@
 package org.motometer.telegram.bot.jdk8;
 
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapterFactory;
 import org.motometer.telegram.bot.Bot;
+
+import java.util.ServiceLoader;
 
 import static java.util.Objects.requireNonNull;
 
@@ -16,7 +19,12 @@ public class BotBuilder {
     }
 
     public Bot build() {
-        return new DefaultBot(new BotTemplate(baseUri(), new Gson()));
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        for (TypeAdapterFactory factory : ServiceLoader.load(TypeAdapterFactory.class)) {
+            gsonBuilder.registerTypeAdapterFactory(factory);
+        }
+
+        return new DefaultBot(new BotTemplate(baseUri(), gsonBuilder.create()));
     }
 
     private String baseUri() {

@@ -2,27 +2,41 @@ package org.motometer.telegram.bot.jdk8;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
-import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.HttpResponse;
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.client.api.Request;
 import org.eclipse.jetty.client.util.StringContentProvider;
 import org.eclipse.jetty.http.HttpMethod;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.motometer.telegram.bot.TelegramApiException;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
-@RequiredArgsConstructor
 class BotTemplate {
 
     private static final int HTTP_SUCCESS = 200;
-    private final HttpClient httpClient = new HttpClient();
+    private final HttpClient httpClient = new HttpClient(new SslContextFactory.Client());
 
     private final String baseUri;
     private final Gson gson;
+
+    @SneakyThrows
+    public BotTemplate(String baseUri, Gson gson) {
+        this.baseUri = baseUri;
+        this.gson = gson;
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                httpClient.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }));
+        httpClient.start();
+    }
 
     <T, R> R execute(T requestBody, Method<R> method) {
         Request request = request(method.getValue(), requestBody);

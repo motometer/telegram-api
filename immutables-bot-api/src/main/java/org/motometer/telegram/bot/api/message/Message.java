@@ -14,6 +14,7 @@ import java.util.List;
 @Value.Immutable
 public interface Message {
 
+    @Gson.Named("message_id")
     long id();
 
     @Nullable
