@@ -19,18 +19,18 @@ public interface Bot {
      * @return {@link User}
      * @see <a href="https://core.telegram.org/bots/api#getme">getMe</a>
      */
-    User me();
+    User me() throws TelegramApiException;
 
     /**
      * @return {@link Update}
      * @see <a href="https://core.telegram.org/bots/api#getupdates">getUpdates</a>
      */
-    List<Update> updates();
+    List<Update> updates() throws TelegramApiException;
 
     /**
      * @param message request entity
      * @return {@link Message}
      * @see <a href="https://core.telegram.org/bots/api#sendmessage">sendMessage</a>
      */
-    Message sendMessage(SendMessage message);
+    Message sendMessage(SendMessage message) throws TelegramApiException;
 }
