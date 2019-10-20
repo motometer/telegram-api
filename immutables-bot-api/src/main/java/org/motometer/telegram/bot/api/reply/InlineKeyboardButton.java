@@ -1,10 +1,12 @@
 package org.motometer.telegram.bot.api.reply;
 
+import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * @see <a href=https://core.telegram.org/bots/api#inlinekeyboardbutton>InlineKeyboardButton</a>
  */
+@Value.Immutable
 public interface InlineKeyboardButton {
 
     String text();
