@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'maven-publish'
+    id 'checkstyle'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains:annotations:16.0.1"
+}

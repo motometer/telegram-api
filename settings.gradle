@@ -1,1 +1,3 @@
-rootProject.name = "bot-api"
+rootProject.name = "telegram-bot-api"
+include 'immutables-bot-api'
+

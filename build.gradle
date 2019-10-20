@@ -1,7 +1,8 @@
 buildscript {
     repositories {
+        mavenLocal()
+        mavenCentral()
         jcenter()
-        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath 'net.researchgate:gradle-release:2.6.0'
@@ -10,12 +11,9 @@ buildscript {
 }
 
 plugins {
-    id 'java'
     id 'maven'
     id 'maven-publish'
     id 'checkstyle'
-    id "net.researchgate.release" version "2.6.0"
-    id "com.jfrog.bintray" version "1.8.4"
 }
 
 repositories {
@@ -24,52 +22,3 @@ repositories {
 }
 
 group = "org.motometer.telegram"
-sourceCompatibility = 1.8
-
-dependencies {
-    implementation "org.jetbrains:annotations:16.0.1"
-}
-
-task sourcesJar(type: Jar) {
-    classifier = "sources"
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-release {
-    git {
-        requireBranch = 'master'
-    }
-}
-
-bintray {
-    user = System.getenv('BINTRAY_USERNAME')
-    key = System.getenv('BINTRAY_PASSWORD')
-    publications = ['bintrayPublication']
-    pkg {
-        repo = 'mvn'
-        name = project.name
-        userOrg = 'motometer'
-        vcsUrl = 'https://github.com/motometer/telegram-bot-api'
-        version {
-            name = project.version
-            released = new Date()
-            vcsTag = project.version
-        }
-    }
-}
-
-publishing {
-    publications {
-        bintrayPublication(MavenPublication) {
-            from components.java
-            artifact sourcesJar
-            groupId project.group
-            artifactId project.name
-            version project.version
-        }
-    }
-}
