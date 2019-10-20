@@ -16,6 +16,22 @@ import java.util.List;
 public interface Bot {
 
     /**
+     * Handles input stream of the input request to provided webhook
+     * @see <a href="https://core.telegram.org/bots/api#getting-updates">Getting updates</a>
+     * Calls {@link UpdateListener#onUpdate(Update)} once request is successully parsed
+     * @param input json payload of with the entity of {@link Update}
+     */
+    void handleWebhook(String input);
+
+    /**
+     * Registers new {@link UpdateListener} to this bot.
+     * @param listener
+     */
+    void addUpdateListener(UpdateListener listener);
+
+    boolean removeListener(UpdateListener listener);
+
+    /**
      * @return {@link User}
      * @see <a href="https://core.telegram.org/bots/api#getme">getMe</a>
      */

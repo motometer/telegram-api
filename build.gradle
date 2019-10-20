@@ -10,15 +10,4 @@ buildscript {
     }
 }
 
-plugins {
-    id 'maven'
-    id 'maven-publish'
-    id 'checkstyle'
-}
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
-
 group = "org.motometer.telegram"

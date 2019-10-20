@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot.jdk8;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
 import lombok.SneakyThrows;
@@ -40,7 +41,8 @@ public class BotBuilder {
         }));
         httpClient.start();
 
-        return new DefaultBot(new BotTemplate(httpClient, baseUri(), gsonBuilder.create()));
+        Gson gson = gsonBuilder.create();
+        return new DefaultBot(new BotTemplate(httpClient, baseUri(), gson), gson);
     }
 
     private String baseUri() {
