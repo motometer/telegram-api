@@ -1,7 +1,9 @@
 package org.motometer.telegram.bot.api;
 
-import org.jetbrains.annotations.Contract;
+import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public enum ChatType {
     PRIVATE_CHAT("private"),
     GROUP("group"),
@@ -10,12 +12,8 @@ public enum ChatType {
 
     private final String value;
 
-    ChatType(String value) {
-        this.value = value;
-    }
-
-    @Contract(pure = true)
-    public String value() {
+    @JsonValue
+    public String getValue() {
         return value;
     }
 }

@@ -1,9 +1,10 @@
 package org.motometer.telegram.bot;
 
+import org.motometer.telegram.bot.api.message.Message;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
-import org.motometer.telegram.bot.api.message.Message;
 import org.motometer.telegram.bot.api.method.SendMessage;
+import org.motometer.telegram.bot.client.BotBuilder;
 
 import java.util.List;
 
@@ -19,18 +20,22 @@ public interface Bot {
      * @return {@link User}
      * @see <a href="https://core.telegram.org/bots/api#getme">getMe</a>
      */
-    User me() throws TelegramApiException;
+    User me();
 
     /**
      * @return {@link Update}
      * @see <a href="https://core.telegram.org/bots/api#getupdates">getUpdates</a>
      */
-    List<Update> updates() throws TelegramApiException;
+    List<Update> updates();
 
     /**
      * @param message request entity
      * @return {@link Message}
      * @see <a href="https://core.telegram.org/bots/api#sendmessage">sendMessage</a>
      */
-    Message sendMessage(SendMessage message) throws TelegramApiException;
+    Message sendMessage(SendMessage message);
+
+    static BotBuilder builder() {
+        return new BotBuilder();
+    }
 }
