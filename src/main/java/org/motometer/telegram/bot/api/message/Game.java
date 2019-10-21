@@ -1,37 +1,35 @@
 package org.motometer.telegram.bot.api.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.List;
+
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#game">Game</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableGame.Builder.class)
 public interface Game {
 
-    @JsonProperty("title")
+    @Gson.Named("title")
     String title();
 
-    @JsonProperty("description")
+    @Gson.Named("description")
     String description();
 
-    @JsonProperty("photo")
+    @Gson.Named("photo")
     List<PhotoSize> photos();
 
     @Nullable
-    @JsonProperty("text")
+    @Gson.Named("text")
     String text();
 
     @Nullable
-    @JsonProperty("text_entities")
+    @Gson.Named("text_entities")
     List<MessageEntity> textEntities();
 
     @Nullable
-    @JsonProperty("animation")
+    @Gson.Named("animation")
     Animation animation();
 }

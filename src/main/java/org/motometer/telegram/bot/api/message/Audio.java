@@ -1,7 +1,6 @@
 package org.motometer.telegram.bot.api.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,17 +8,16 @@ import org.jetbrains.annotations.Nullable;
  * @see <a href="https://core.telegram.org/bots/api#audio">Audio</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableAudio.Builder.class)
 public interface Audio extends Attachment {
 
-    @JsonProperty("duration")
+    @Gson.Named("duration")
     long duration();
 
     @Nullable
-    @JsonProperty("performer")
+    @Gson.Named("performer")
     String performer();
 
     @Nullable
-    @JsonProperty("title")
+    @Gson.Named("title")
     String title();
 }

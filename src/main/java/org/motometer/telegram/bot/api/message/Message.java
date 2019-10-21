@@ -1,133 +1,130 @@
 package org.motometer.telegram.bot.api.message;
 
+import java.util.List;
+
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.motometer.telegram.bot.api.Chat;
 import org.motometer.telegram.bot.api.User;
-
-import java.util.List;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#message">Message</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableMessage.Builder.class)
 public interface Message {
 
-    @JsonProperty("message_id")
+    @Gson.Named("message_id")
     long id();
 
     @Nullable
-    @JsonProperty("from")
+    @Gson.Named("from")
     User fromUser();
 
-    @JsonProperty("date")
+    @Gson.Named("date")
     long date();
 
     @Nullable
-    @JsonProperty("chat")
+    @Gson.Named("chat")
     Chat chat();
 
     @Nullable
-    @JsonProperty("forward_from")
+    @Gson.Named("forward_from")
     User forwardFrom();
 
     @Nullable
-    @JsonProperty("forward_from_chat")
+    @Gson.Named("forward_from_chat")
     Chat forwardFromChat();
 
     @Nullable
-    @JsonProperty("forward_from_message_id")
+    @Gson.Named("forward_from_message_id")
     Long forwardFromMessageId();
 
     @Nullable
-    @JsonProperty("forward_signature")
+    @Gson.Named("forward_signature")
     String forwardSignature();
 
     @Nullable
-    @JsonProperty("forward_sender_name")
+    @Gson.Named("forward_sender_name")
     String forwardSenderName();
 
     @Nullable
-    @JsonProperty("forward_date")
+    @Gson.Named("forward_date")
     Long forwardDate();
 
     @Nullable
-    @JsonProperty("reply_to_message")
+    @Gson.Named("reply_to_message")
     Message replyToMessage();
 
     @Nullable
-    @JsonProperty("edit_date")
+    @Gson.Named("edit_date")
     Long editDate();
 
     @Nullable
-    @JsonProperty("media_group_id")
+    @Gson.Named("media_group_id")
     String mediaGroupId();
 
     @Nullable
-    @JsonProperty("author_signature")
+    @Gson.Named("author_signature")
     String authorSignature();
 
     @Nullable
-    @JsonProperty("text")
+    @Gson.Named("text")
     String text();
 
     @Nullable
-    @JsonProperty("entities")
+    @Gson.Named("entities")
     List<MessageEntity> entities();
 
     @Nullable
-    @JsonProperty("caption_entities")
+    @Gson.Named("caption_entities")
     List<MessageEntity> captionEntities();
 
     @Nullable
-    @JsonProperty("audio")
+    @Gson.Named("audio")
     Audio audio();
 
     @Nullable
-    @JsonProperty("document")
+    @Gson.Named("document")
     Document document();
 
     @Nullable
-    @JsonProperty("animation")
+    @Gson.Named("animation")
     Animation animation();
 
     @Nullable
-    @JsonProperty("game")
+    @Gson.Named("game")
     Game game();
 
     @Nullable
-    @JsonProperty("photo")
+    @Gson.Named("photo")
     List<PhotoSize> photo();
 
     @Nullable
-    @JsonProperty("sticker")
+    @Gson.Named("sticker")
     Sticker sticker();
 
     @Nullable
-    @JsonProperty("video")
+    @Gson.Named("video")
     Video video();
 
     @Nullable
-    @JsonProperty("voice")
+    @Gson.Named("voice")
     Voice voice();
 
     @Nullable
-    @JsonProperty("video_note")
+    @Gson.Named("video_note")
     VideoNote videoNote();
 
     @Nullable
-    @JsonProperty("caption")
+    @Gson.Named("caption")
     String caption();
 
     @Nullable
-    @JsonProperty("contact")
+    @Gson.Named("contact")
     Contact contact();
 
     @Nullable
-    @JsonProperty("location")
+    @Gson.Named("location")
     Location location();
 }

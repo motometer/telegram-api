@@ -1,7 +1,6 @@
 package org.motometer.telegram.bot.api.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 import org.motometer.telegram.bot.api.User;
@@ -10,7 +9,6 @@ import org.motometer.telegram.bot.api.User;
  * @see <a href="https://core.telegram.org/bots/api#messageentity">MessageEntity</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableMessageEntity.Builder.class)
 public interface MessageEntity {
 
     /**
@@ -18,20 +16,20 @@ public interface MessageEntity {
      * bold (bold text), italic (italic text), code (monowidth string), pre (monowidth block),
      * text_link (for clickable text URLs), text_mention (for users without usernames)
      */
-    @JsonProperty("type")
+    @Gson.Named("type")
     String type();
 
-    @JsonProperty("offset")
+    @Gson.Named("offset")
     long offset();
 
-    @JsonProperty("length")
+    @Gson.Named("length")
     long length();
 
     @Nullable
-    @JsonProperty("url")
+    @Gson.Named("url")
     String url();
 
     @Nullable
-    @JsonProperty("user")
+    @Gson.Named("user")
     User user();
 }

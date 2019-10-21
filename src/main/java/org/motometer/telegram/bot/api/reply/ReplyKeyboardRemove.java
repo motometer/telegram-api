@@ -1,6 +1,6 @@
 package org.motometer.telegram.bot.api.reply;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -11,11 +11,11 @@ import org.jetbrains.annotations.Nullable;
 public interface ReplyKeyboardRemove extends ReplyMarkup {
 
     @Value.Parameter
-    @JsonProperty("remove_keyboard")
+    @Gson.Named("remove_keyboard")
     boolean removeKeyboard();
 
     @Nullable
     @Value.Parameter
-    @JsonProperty("selective")
+    @Gson.Named("selective")
     Boolean selective();
 }
