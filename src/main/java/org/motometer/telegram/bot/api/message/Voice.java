@@ -1,7 +1,6 @@
 package org.motometer.telegram.bot.api.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,13 +8,12 @@ import org.jetbrains.annotations.Nullable;
  * @see <a href="https://core.telegram.org/bots/api#voice">Voice</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableVoice.Builder.class)
 public interface Voice extends File {
 
-    @JsonProperty("duration")
+    @Gson.Named("duration")
     long duration();
 
     @Nullable
-    @JsonProperty("mime_type")
+    @Gson.Named("mime_type")
     String mimeType();
 }

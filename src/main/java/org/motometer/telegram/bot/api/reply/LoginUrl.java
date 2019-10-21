@@ -1,6 +1,6 @@
 package org.motometer.telegram.bot.api.reply;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,18 +10,18 @@ import org.jetbrains.annotations.Nullable;
 @Value.Immutable
 public interface LoginUrl {
 
-    @JsonProperty("url")
+    @Gson.Named("url")
     String url();
 
     @Nullable
-    @JsonProperty("forward_text")
+    @Gson.Named("forward_text")
     String forwardText();
 
     @Nullable
-    @JsonProperty("bot_username")
+    @Gson.Named("bot_username")
     String botUsername();
 
     @Nullable
-    @JsonProperty("request_write_access")
+    @Gson.Named("request_write_access")
     Boolean requestWriteAccess();
 }

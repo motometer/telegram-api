@@ -1,23 +1,21 @@
 package org.motometer.telegram.bot.api.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#photosize">PhotoSize</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutablePhotoSize.Builder.class)
 public interface PhotoSize extends File {
 
-    @JsonProperty("width")
+    @Gson.Named("width")
     long width();
 
-    @JsonProperty("height")
+    @Gson.Named("height")
     long height();
 
     @Override
-    @JsonProperty("file_size")
+    @Gson.Named("file_size")
     Long fileSize();
 }

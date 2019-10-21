@@ -1,18 +1,24 @@
 package org.motometer.telegram.api;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ServiceLoader;
+
 import org.junit.jupiter.api.BeforeEach;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapterFactory;
 
 public abstract class AbstractJsonTest {
 
-    protected ObjectMapper mapper;
+    protected Gson gson;
 
     @BeforeEach
     void setUp() {
-        mapper = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        for (TypeAdapterFactory factory : ServiceLoader.load(TypeAdapterFactory.class)) {
+            gsonBuilder.registerTypeAdapterFactory(factory);
+        }
+
+        gson = gsonBuilder.create();
     }
 }

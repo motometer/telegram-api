@@ -1,22 +1,20 @@
 package org.motometer.telegram.bot.api.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#video">Video</a>
  */
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableVideo.Builder.class)
 public interface Video extends Attachment {
 
-    @JsonProperty("width")
+    @Gson.Named("width")
     long width();
 
-    @JsonProperty("height")
+    @Gson.Named("height")
     long height();
 
-    @JsonProperty("duration")
+    @Gson.Named("duration")
     long duration();
 }

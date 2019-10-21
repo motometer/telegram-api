@@ -1,6 +1,6 @@
 package org.motometer.telegram.bot.api.reply;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -11,11 +11,11 @@ import org.jetbrains.annotations.Nullable;
 public interface ForceReply extends ReplyMarkup {
 
     @Value.Parameter
-    @JsonProperty("force_reply")
+    @Gson.Named("force_reply")
     boolean forceReply();
 
     @Nullable
     @Value.Parameter
-    @JsonProperty("selective")
+    @Gson.Named("selective")
     Boolean selective();
 }

@@ -1,6 +1,5 @@
 package org.motometer.telegram.bot.api;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -12,7 +11,6 @@ public enum ChatType {
 
     private final String value;
 
-    @JsonValue
     public String getValue() {
         return value;
     }
