@@ -13,9 +13,9 @@ class UpdateTest extends AbstractJsonTest {
 
     @Test
     void deserialization() throws Exception {
-        final var string = resourceToString(PAYLOAD_PATH, defaultCharset());
+        final String string = resourceToString(PAYLOAD_PATH, defaultCharset());
 
-        final var update = gson.fromJson(string, Update.class);
+        final Update update = gson.fromJson(string, Update.class);
 
         assertThat(update).isNotNull();
     }

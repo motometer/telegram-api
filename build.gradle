@@ -18,6 +18,8 @@ plugins {
 }
 
 group = "org.motometer.telegram"
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenLocal()
