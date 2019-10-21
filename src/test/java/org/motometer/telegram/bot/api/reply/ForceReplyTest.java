@@ -1,7 +1,7 @@
 package org.motometer.telegram.bot.api.reply;
 
 import org.junit.jupiter.api.Test;
-import org.motometer.telegram.api.AbstractJsonTest;
+import org.motometer.telegram.bot.api.update.AbstractJsonTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
