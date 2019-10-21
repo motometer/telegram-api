@@ -3,7 +3,7 @@ package org.motometer.telegram.bot.api.message;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
-import org.motometer.telegram.bot.api.User;
+import org.motometer.telegram.bot.api.update.User;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#messageentity">MessageEntity</a>

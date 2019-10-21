@@ -1,7 +1,6 @@
-package org.motometer.telegram.api;
+package org.motometer.telegram.bot.api.update;
 
 import org.junit.jupiter.api.Test;
-import org.motometer.telegram.bot.api.Update;
 
 import static java.nio.charset.Charset.defaultCharset;
 import static org.apache.commons.io.IOUtils.resourceToString;

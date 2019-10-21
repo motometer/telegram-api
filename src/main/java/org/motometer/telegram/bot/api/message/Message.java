@@ -5,8 +5,8 @@ import java.util.List;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
-import org.motometer.telegram.bot.api.Chat;
-import org.motometer.telegram.bot.api.User;
+import org.motometer.telegram.bot.api.update.Chat;
+import org.motometer.telegram.bot.api.update.User;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#message">Message</a>

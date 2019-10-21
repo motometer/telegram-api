@@ -1,4 +1,4 @@
-package org.motometer.telegram.bot.api;
+package org.motometer.telegram.bot.api.update;
 
 import lombok.RequiredArgsConstructor;
 
