@@ -1,4 +1,0 @@
-rootProject.name = "telegram-bot-api"
-include 'immutables-bot-api'
-include 'bot-jdk8'
-
