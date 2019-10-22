@@ -1,4 +1,4 @@
-package org.motometer.telegram.bot.api.reply;
+package org.motometer.telegram.bot.api;
 
 import org.immutables.value.Value;
 

@@ -5,29 +5,26 @@ import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * @see <a href=https://core.telegram.org/bots/api#user>User</a>
+ * @see <a href="https://core.telegram.org/bots/api#contact">Contact</a>
  */
 @Value.Immutable
-public interface User {
+public interface Contact {
 
-    @Gson.Named("id")
-    long id();
+    @Gson.Named("phone_number")
+    String phoneNumber();
 
     @Gson.Named("first_name")
     String firstName();
-
-    @Gson.Named("is_bot")
-    boolean isBot();
 
     @Nullable
     @Gson.Named("last_name")
     String lastName();
 
     @Nullable
-    @Gson.Named("username")
-    String userName();
+    @Gson.Named("user_id")
+    Long userId();
 
     @Nullable
-    @Gson.Named("language_code")
-    String languageCode();
+    @Gson.Named("vcard")
+    String vCard();
 }

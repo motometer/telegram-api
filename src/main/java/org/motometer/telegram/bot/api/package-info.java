@@ -1,4 +1,4 @@
-@Value.Style(create = "new", builder = "new")
+@Gson.TypeAdapters
 package org.motometer.telegram.bot.api;
 
-import org.immutables.value.Value;
+import org.immutables.gson.Gson;

@@ -1,10 +1,10 @@
-package org.motometer.telegram.bot.api.reply;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.immutables.value.Value;
-import org.jetbrains.annotations.Nullable;
+package org.motometer.telegram.bot.api;
 
 import java.util.List;
+
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#replykeyboardmarkup">ReplyKeyboardMarkup</a>
@@ -12,18 +12,18 @@ import java.util.List;
 @Value.Immutable
 public interface ReplyKeyboardMarkup extends ReplyMarkup {
 
-    @JsonProperty("keyboard")
+    @Gson.Named("keyboard")
     List<List<KeyboardButton>> keyboard();
 
     @Nullable
-    @JsonProperty("resize_keyboard")
+    @Gson.Named("resize_keyboard")
     Boolean resizeKeyboard();
 
     @Nullable
-    @JsonProperty("one_time_keyboard")
+    @Gson.Named("one_time_keyboard")
     Boolean oneTimeKeyboard();
 
     @Nullable
-    @JsonProperty("selective")
+    @Gson.Named("selective")
     Boolean selective();
 }

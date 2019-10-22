@@ -1,7 +1,6 @@
-package org.motometer.telegram.api;
+package org.motometer.telegram.bot.api;
 
 import org.junit.jupiter.api.Test;
-import org.motometer.telegram.bot.api.Update;
 
 import static java.nio.charset.Charset.defaultCharset;
 import static org.apache.commons.io.IOUtils.resourceToString;
@@ -13,9 +12,9 @@ class UpdateTest extends AbstractJsonTest {
 
     @Test
     void deserialization() throws Exception {
-        final var string = resourceToString(PAYLOAD_PATH, defaultCharset());
+        final String string = resourceToString(PAYLOAD_PATH, defaultCharset());
 
-        final var update = mapper.readValue(string, Update.class);
+        final Update update = gson.fromJson(string, Update.class);
 
         assertThat(update).isNotNull();
     }

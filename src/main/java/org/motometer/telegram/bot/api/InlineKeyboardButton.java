@@ -1,6 +1,6 @@
-package org.motometer.telegram.bot.api.reply;
+package org.motometer.telegram.bot.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,40 +10,40 @@ import org.jetbrains.annotations.Nullable;
 @Value.Immutable
 public interface InlineKeyboardButton {
 
-    @JsonProperty("text")
+    @Gson.Named("text")
     String text();
 
     @Nullable
-    @JsonProperty("url")
+    @Gson.Named("url")
     String url();
 
     @Nullable
-    @JsonProperty("login_url")
+    @Gson.Named("login_url")
     LoginUrl loginUrl();
 
     @Nullable
-    @JsonProperty("callback_data")
+    @Gson.Named("callback_data")
     String callbackData();
 
     @Nullable
-    @JsonProperty("switch_inline_query")
+    @Gson.Named("switch_inline_query")
     String switchInlineQuery();
 
     @Nullable
-    @JsonProperty("switch_inline_query_current_chat")
+    @Gson.Named("switch_inline_query_current_chat")
     String switchInlineQueryCurrentChat();
 
     /**
      * NOTE: This type of button must always be the first button in the first row.
      */
     @Nullable
-    @JsonProperty("callback_game")
+    @Gson.Named("callback_game")
     CallbackGame callbackGame();
 
     /**
      * NOTE: This type of button must always be the first button in the first row.
      */
     @Nullable
-    @JsonProperty("pay")
+    @Gson.Named("pay")
     Boolean pay();
 }
