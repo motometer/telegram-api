@@ -3,10 +3,13 @@ package org.motometer.telegram.bot;
 import org.motometer.telegram.bot.api.Update;
 
 /**
- * Listener that receives update from telegram webhook.
+ * Listener that receives {@link Update} events from telegram webhook.
  * @see <a href="https://core.telegram.org/bots/api#setwebhook">setWebhook</a>
+ * @see WebHookListener
  */
-public interface UpdateListener {
+@FunctionalInterface
+public interface UpdateListener extends EventListener<Update> {
 
-    void onUpdate(Update update);
+    @Override
+    void onEvent(Update event);
 }
