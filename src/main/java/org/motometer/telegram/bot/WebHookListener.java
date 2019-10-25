@@ -12,8 +12,8 @@ public interface WebHookListener extends EventListener<String> {
 
     /**
      * Raw json payload that Telegram API sends to provided webhook.
-     * @param event
+     * @param event value to be parsed
      */
     @Override
-    void onEvent(String event);
+    void onEvent(String event) throws BotException;
 }

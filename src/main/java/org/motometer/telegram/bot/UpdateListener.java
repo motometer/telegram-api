@@ -11,5 +11,5 @@ import org.motometer.telegram.bot.api.Update;
 public interface UpdateListener extends EventListener<Update> {
 
     @Override
-    void onEvent(Update event);
+    void onEvent(Update event) throws BotException;
 }

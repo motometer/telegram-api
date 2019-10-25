@@ -16,12 +16,12 @@ import java.util.List;
 public interface Bot {
 
     /**
-     * Factory method that creates {@link WebHookListener}
+     * Factory method that creates adapter for {@link WebHookListener}
      * @param listener {@link UpdateListener#onEvent(Update)} will be called after
      *                                                       {@link WebHookListener#onEvent(String)}
      * @return {@link WebHookListener#onEvent(String)}
      */
-    WebHookListener createWebHookListener(UpdateListener listener);
+    WebHookListener adaptListener(UpdateListener listener);
 
     /**
      * @return {@link User}
