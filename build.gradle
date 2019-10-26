@@ -20,6 +20,12 @@ group = "org.motometer.telegram"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+ext."signing.keyId" = System.getenv('GPG_KEY_ID')
+ext."signing.secretKeyRingFile" = System.getenv('GPG_KEY_LOCATION')
+ext."signing.password" = System.getenv('GPG_PASSWORD')
+ext."ossrhUsername" = System.getenv('OSSRH_USERNAME')
+ext."ossrhPassword" = System.getenv('OSSRH_PASSWORD')
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -57,6 +63,16 @@ artifacts {
 release {
     git {
         requireBranch = 'master'
+    }
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.allTasks.any { it.name == 'build' || it.name == 'assemble' }) {
+        tasks.findAll {
+            it.name == 'signArchives' || it.name == 'signDocsJar' || it.name == 'signTestJar'
+        }.each { task ->
+            task.enabled = false
+        }
     }
 }
 
@@ -107,3 +123,4 @@ signing {
     sign configurations.archives
 }
 
+uploadArchives.dependsOn signArchives
