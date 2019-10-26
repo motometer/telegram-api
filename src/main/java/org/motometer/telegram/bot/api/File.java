@@ -1,7 +1,8 @@
 package org.motometer.telegram.bot.api;
 
 import org.immutables.gson.Gson;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public interface File {
 

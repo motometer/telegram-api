@@ -13,6 +13,7 @@ plugins {
     id 'maven'
     id 'signing'
     id 'checkstyle'
+    id 'pmd'
     id "net.researchgate.release" version "2.6.0"
 }
 
@@ -20,11 +21,16 @@ group = "org.motometer.telegram"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext."signing.keyId" = System.getenv('GPG_KEY_ID')
-ext."signing.secretKeyRingFile" = System.getenv('GPG_KEY_LOCATION')
-ext."signing.password" = System.getenv('GPG_PASSWORD')
-ext."ossrhUsername" = System.getenv('OSSRH_USERNAME')
-ext."ossrhPassword" = System.getenv('OSSRH_PASSWORD')
+ext.'signing.keyId' = System.getenv('GPG_KEY_ID')
+ext.'signing.secretKeyRingFile' = System.getenv('GPG_KEY_LOCATION')
+ext.'signing.password' = System.getenv('GPG_PASSWORD')
+ext.'ossrhUsername' = System.getenv('OSSRH_USERNAME')
+ext.'ossrhPassword' = System.getenv('OSSRH_PASSWORD')
+
+ext.'immutables' = 'org.immutables:value:2.8.0'
+ext.'immutablesGson' = 'org.immutables:gson:2.8.0'
+ext.'lombok' = 'org.projectlombok:lombok:1.18.10'
+ext.'jsr305' = 'com.google.code.findbugs:jsr305:3.0.1'
 
 repositories {
     mavenLocal()
@@ -32,14 +38,17 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains:annotations:16.0.1"
+    compileOnly jsr305
+    compileOnly immutables
+    compileOnly immutablesGson
+    compileOnly lombok
 
-    compileOnly "org.immutables:value:2.8.0"
-    compileOnly "org.immutables:gson:2.8.0"
-    compileOnly "org.projectlombok:lombok:1.18.10"
+    annotationProcessor immutables
+    annotationProcessor lombok
 
-    annotationProcessor "org.immutables:value:2.8.0"
-    annotationProcessor "org.projectlombok:lombok:1.18.10"
+    testCompileOnly lombok
+    testCompileOnly jsr305
+    testAnnotationProcessor lombok
 
     testCompile "org.junit.jupiter:junit-jupiter:5.5.1"
     testCompile "org.assertj:assertj-core:3.13.2"
@@ -52,8 +61,9 @@ test {
 }
 
 task sourcesJar(type: Jar) {
-    classifier = "sources"
+    archiveClassifier.set('sources')
     from sourceSets.main.allSource
+    from "$buildDir/generated/sources/annotationProcessor/java/main"
 }
 
 artifacts {

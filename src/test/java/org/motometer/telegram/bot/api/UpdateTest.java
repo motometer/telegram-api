@@ -14,7 +14,7 @@ class UpdateTest extends AbstractJsonTest {
     void deserialization() throws Exception {
         final String string = resourceToString(PAYLOAD_PATH, defaultCharset());
 
-        final Update update = gson.fromJson(string, Update.class);
+        final Update update = getGson().fromJson(string, Update.class);
 
         assertThat(update).isNotNull();
     }

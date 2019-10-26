@@ -1,10 +1,10 @@
 package org.motometer.telegram.bot.api;
 
-import java.util.List;
-
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#game">Game</a>
