@@ -10,7 +10,7 @@ class ForceReplyTest extends AbstractJsonTest {
     void forceReply() {
         ImmutableForceReply forceReply = ImmutableForceReply.of(true, null);
 
-        String result = gson.toJson(forceReply);
+        String result = getGson().toJson(forceReply);
 
         assertThat(result).isEqualTo("{\"force_reply\":true}");
     }

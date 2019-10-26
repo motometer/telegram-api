@@ -5,6 +5,8 @@ package org.motometer.telegram.bot;
  */
 public class BotException extends RuntimeException {
 
+    static final long serialVersionUID = 89742312190703439L;
+
     public BotException(Throwable e) {
         super(e);
     }

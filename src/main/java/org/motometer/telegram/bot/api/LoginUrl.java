@@ -2,7 +2,8 @@ package org.motometer.telegram.bot.api;
 
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 /**
  * @see <a href="https://core.telegram.org/bots/api#loginurl">LoginUrl</a>
