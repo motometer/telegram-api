@@ -63,6 +63,7 @@ test {
 task sourcesJar(type: Jar) {
     archiveClassifier.set('sources')
     from sourceSets.main.allSource
+    from "$buildDir/generated/sources/annotationProcessor/java/main"
 }
 
 artifacts {
