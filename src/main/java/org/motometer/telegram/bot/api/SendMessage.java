@@ -37,5 +37,13 @@ public interface SendMessage {
 
     @Nullable
     @Gson.Named("reply_markup")
+    @Gson.ExpectedSubtypes(
+        {
+            ForceReply.class,
+            InlineKeyboardMarkup.class,
+            ReplyKeyboardMarkup.class,
+            ReplyKeyboardRemove.class
+        }
+    )
     ReplyMarkup replyMarkup();
 }

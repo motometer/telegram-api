@@ -38,9 +38,9 @@ repositories {
 }
 
 dependencies {
+    compile immutablesGson
     compileOnly jsr305
     compileOnly immutables
-    compileOnly immutablesGson
     compileOnly lombok
 
     annotationProcessor immutables
