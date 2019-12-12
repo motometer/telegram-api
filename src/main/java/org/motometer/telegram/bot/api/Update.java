@@ -29,4 +29,8 @@ public interface Update {
     @Nullable
     @Gson.Named("edited_channel_post")
     Message editedChannelPost();
+
+    @Nullable
+    @Gson.Named("callback_query")
+    CallbackQuery callbackQuery();
 }
