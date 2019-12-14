@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 public interface CallbackQuery {
 
     @Gson.Named("id")
-    long id();
+    String id();
 
     @Gson.Named("from")
     User from();
