@@ -22,7 +22,6 @@ public interface Message {
     @Gson.Named("date")
     long date();
 
-    @Nullable
     @Gson.Named("chat")
     Chat chat();
 
