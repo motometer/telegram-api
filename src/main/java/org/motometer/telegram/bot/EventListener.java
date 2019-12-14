@@ -1,7 +1,7 @@
 package org.motometer.telegram.bot;
 
 @FunctionalInterface
-public interface EventListener<E> {
+public interface EventListener<E, R> {
 
-    void onEvent(E event) throws BotException;
+    R onEvent(E event) throws BotException;
 }

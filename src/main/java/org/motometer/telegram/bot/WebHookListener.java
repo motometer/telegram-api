@@ -8,12 +8,12 @@ import org.motometer.telegram.bot.api.Update;
  * @see UpdateListener
  */
 @FunctionalInterface
-public interface WebHookListener extends EventListener<String> {
+public interface WebHookListener extends EventListener<String, Void> {
 
     /**
      * Raw json payload that Telegram API sends to provided webhook.
      * @param event value to be parsed
      */
     @Override
-    void onEvent(String event) throws BotException;
+    Void onEvent(String event) throws BotException;
 }

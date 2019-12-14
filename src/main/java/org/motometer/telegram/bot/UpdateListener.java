@@ -8,8 +8,8 @@ import org.motometer.telegram.bot.api.Update;
  * @see WebHookListener
  */
 @FunctionalInterface
-public interface UpdateListener extends EventListener<Update> {
+public interface UpdateListener extends EventListener<Update, Action> {
 
     @Override
-    void onEvent(Update event) throws BotException;
+    Action onEvent(Update event) throws BotException;
 }
