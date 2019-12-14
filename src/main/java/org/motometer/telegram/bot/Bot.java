@@ -1,5 +1,6 @@
 package org.motometer.telegram.bot;
 
+import org.motometer.telegram.bot.api.CallbackQueryAnswer;
 import org.motometer.telegram.bot.api.Message;
 import org.motometer.telegram.bot.api.Update;
 import org.motometer.telegram.bot.api.User;
@@ -41,4 +42,13 @@ public interface Bot {
      * @see <a href="https://core.telegram.org/bots/api#sendmessage">sendMessage</a>
      */
     Message sendMessage(SendMessage message) throws BotException;
+
+    /**
+     *
+     * @param answer request entity
+     * @return On success, True is returned.
+     * @see <a href="https://core.telegram.org/bots/api#answercallbackquery">answerCallbackQuery</a>
+     * @throws BotException on failure
+     */
+    boolean answerCallbackQuery(CallbackQueryAnswer answer) throws BotException;
 }
