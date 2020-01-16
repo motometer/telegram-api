@@ -15,11 +15,3 @@ jobs:
       run: ./gradlew build
       env:
         GPG_KEY_LOCATION: ${{secrets.GPG_KEY_LOCATION}}
-    - name: Publish snapshot to Maven Central
-      run: ./gradlew uploadArchives
-      env:
-        GPG_KEY_ID: ${{secrets.GPG_KEY_ID}}
-        GPG_KEY_LOCATION: ${{secrets.GPG_KEY_LOCATION}}
-        GPG_PASSWORD: ${{secrets.GPG_PASSWORD}}
-        OSSRH_USERNAME: ${{secrets.OSSRH_USERNAME}}
-        OSSRH_PASSWORD: ${{secrets.OSSRH_PASSWORD}}
