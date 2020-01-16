@@ -141,6 +141,7 @@ task downloadKey {
     doLast {
         def file = new File("$signingKeyFile")
         def keyLocation = System.getenv('GPG_KEY_LOCATION')
+        println("KEY location $keyLocation")
         if (!file.exists() && keyLocation != null) {
             new URL(keyLocation)
                     .withInputStream { stream -> file.withOutputStream{ it << stream }}
