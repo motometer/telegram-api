@@ -22,7 +22,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext.'signing.keyId' = System.getenv('GPG_KEY_ID')
-ext.'signing.secretKeyRingFile' = System.getenv('GPG_KEY_LOCATION')
+ext.'signing.secretKeyRingFile' = "$buildDir/resources/key.gpg"
 ext.'signing.password' = System.getenv('GPG_PASSWORD')
 ext.'ossrhUsername' = System.getenv('OSSRH_USERNAME')
 ext.'ossrhPassword' = System.getenv('OSSRH_PASSWORD')
@@ -134,3 +134,15 @@ signing {
 }
 
 uploadArchives.dependsOn signArchives
+
+task downloadKey {
+    doLast {
+        def file = new File("$buildDir/resources/key.gpg")
+        if (!file.exists()) {
+            new URL(System.getenv('GPG_KEY_LOCATION'))
+                    .withInputStream{ stream -> file.withOutputStream{ it << stream }}
+        }
+    }
+}
+
+signArchives.dependsOn downloadKey
