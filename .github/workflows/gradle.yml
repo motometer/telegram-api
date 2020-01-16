@@ -13,6 +13,8 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
+      env:
+        GPG_KEY_LOCATION: ${{secrets.GPG_KEY_LOCATION}}
     - name: Publish snapshot to Maven Central
       run: ./gradlew uploadArchives
       env:
