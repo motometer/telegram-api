@@ -51,7 +51,7 @@ dependencies {
     testCompileOnly jsr305
     testAnnotationProcessor lombok
 
-    testCompile "org.junit.jupiter:junit-jupiter:5.6.0"
+    testCompile "org.junit.jupiter:junit-jupiter:5.6.2"
     testCompile "org.assertj:assertj-core:3.15.0"
     testCompile "commons-io:commons-io:2.6"
     testCompile 'com.google.code.gson:gson:2.8.6'
