@@ -36,6 +36,13 @@ ext.'jsr305' = 'com.google.code.findbugs:jsr305:3.0.2'
 repositories {
     mavenLocal()
     mavenCentral()
+    maven {
+        url 'https://maven.pkg.github.com/motometer/telegram-bot-api'
+        credentials {
+            username = githubUsername
+            password = githubToken
+        }
+    }
 }
 
 dependencies {
@@ -129,6 +136,29 @@ uploadArchives {
         }
     }
 }
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = 'https://maven.pkg.github.com/motometer/telegram-bot-api'
+            credentials {
+                username = githubUsername
+                password = githubToken
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
+
 
 signing {
     sign configurations.archives
