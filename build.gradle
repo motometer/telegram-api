@@ -30,7 +30,7 @@ ext.'ossrhPassword' = System.getenv('OSSRH_PASSWORD')
 
 ext.'immutables' = 'org.immutables:value:2.8.3'
 ext.'immutablesGson' = 'org.immutables:gson:2.8.3'
-ext.'lombok' = 'org.projectlombok:lombok:1.18.12'
+ext.'lombok' = 'org.projectlombok:lombok:1.18.20'
 ext.'jsr305' = 'com.google.code.findbugs:jsr305:3.0.2'
 
 repositories {
